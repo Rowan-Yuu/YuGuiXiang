@@ -3,7 +3,10 @@
 // script.js
 // ===============================
 
-// ---------- 基础页面配置 ----------
+
+// ===============================
+// 1. 页面标题配置
+// ===============================
 
 const PAGE_LABELS = {
   introduction: {
@@ -43,36 +46,33 @@ const PAGE_LABELS = {
   }
 };
 
-// ---------- Markdown 文件路径 ----------
-// 简介页面：Intro / Likes / Dislikes 用 md
+
+// ===============================
+// 2. Markdown 文件路径
+// ===============================
+
+// 简介页面
 const INTRO_MD_PATH = "Introduction/Intro.md";
 const INTRO_LIKES_MD_PATH = "Introduction/Likes.md";
 const INTRO_DISLIKES_MD_PATH = "Introduction/Dislikes.md";
 
-// Timeline：目前用一个 LifeStory.md
+// Preference 页面
+const PREFERENCE_LIKES_MD_PATH = "Preferences/Likes/Details.md";
+const PREFERENCE_DISLIKES_MD_PATH = "Preferences/Dislikes/Details.md";
+
+// Timeline 页面
 const TIMELINE_MD_PATH = "Timeline/LifeStory.md";
 
-// ---------- 图片清单 ----------
-// 注意：GitHub Pages 不能自动扫描文件夹，所以图片要在这里列出来。
-// date 不写也可以，系统会自动用文件名去掉后缀作为日期。
-// 建议图片格式用 jpg / JPG / png / PNG。
-// heic 在很多浏览器里不能正常显示，最好转成 jpg/png。
+
+// ===============================
+// 3. 图片清单
+// ===============================
 
 const IMAGE_LIST = [
-  {
-    file: "余归巷/2023.11.14.PNG",
-    title: "余归巷",
-    date: "2023.11.14"
-  },
   {
     file: "余归巷/2026.3.9.jpg",
     title: "余归巷",
     date: "2026.3.9"
-  },
-  {
-    file: "余归巷/2025.7.PNG",
-    title: "余归巷",
-    date: "2025.7"
   },
   {
     file: "余归巷/2025.4.23.jpg",
@@ -80,24 +80,74 @@ const IMAGE_LIST = [
     date: "2025.4.23"
   },
   {
-    file: "余归巷/2025.10.PNG",
+    file: "余归巷/2025.4.10.png",
     title: "余归巷",
-    date: "2025.10"
+    date: "2025.4.10"
   },
   {
-    file: "余归巷/2024.11.PNG",
+    file: "余归巷/2025.4.7.png",
     title: "余归巷",
-    date: "2024.11"
+    date: "2025.4.7"
   },
   {
-    file: "余归巷/2024.10.PNG",
-    title: "余归巷",
-    date: "2024.10"
-  },
-  {
-    file: "余归巷/2024.4.8.PNG",
+    file: "余归巷/2024.4.8.png",
     title: "余归巷",
     date: "2024.4.8"
+  },
+  {
+    file: "余归巷/2024.3.11.png",
+    title: "余归巷",
+    date: "2024.3.11"
+  },
+  {
+    file: "余归巷/2024.3.11 (2).png",
+    title: "余归巷",
+    date: "2024.3.11"
+  },
+  {
+    file: "余归巷/2024.3.10.png",
+    title: "余归巷",
+    date: "2024.3.10"
+  },
+  {
+    file: "余归巷/2023.11.14.png",
+    title: "余归巷",
+    date: "2023.11.14"
+  },
+  {
+    file: "余归巷/2023.11.9.jpeg",
+    title: "余归巷",
+    date: "2023.11.9"
+  },
+  {
+    file: "余归巷/2023.6.19.jpg",
+    title: "余归巷",
+    date: "2023.6.19"
+  },
+  {
+    file: "余归巷/2023.5.14.jpg",
+    title: "余归巷",
+    date: "2023.5.14"
+  },
+  {
+    file: "余归巷/2023.5.7.jpg",
+    title: "余归巷",
+    date: "2023.5.7"
+  },
+  {
+    file: "余归巷/2023.2.21.jpg",
+    title: "余归巷",
+    date: "2023.2.21"
+  },
+  {
+    file: "余归巷/2022.11.10.jpg",
+    title: "余归巷",
+    date: "2022.11.10"
+  },
+  {
+    file: "余归巷/2022.10.24.jpg",
+    title: "余归巷",
+    date: "2022.10.24"
   },
   {
     file: "余归巷/2022.6.15.jpg",
@@ -110,9 +160,39 @@ const IMAGE_LIST = [
     date: "2022.6.5"
   },
   {
-    file: "余归巷/2021.8.22.JPG",
+    file: "余归巷/2022.5.29.png",
+    title: "余归巷",
+    date: "2022.5.29"
+  },
+  {
+    file: "余归巷/2022.1.2.jpg",
+    title: "余归巷",
+    date: "2022.1.2"
+  },
+  {
+    file: "余归巷/2022.1.2.jpeg",
+    title: "余归巷",
+    date: "2022.1.2"
+  },
+  {
+    file: "余归巷/2021.9.4.png",
+    title: "余归巷",
+    date: "2021.9.4"
+  },
+  {
+    file: "余归巷/2021.8.22.jpg",
     title: "余归巷",
     date: "2021.8.22"
+  },
+  {
+    file: "余归巷/2021.7.26.jpg",
+    title: "余归巷",
+    date: "2021.7.26"
+  },
+  {
+    file: "余归巷/2021.7.24.png",
+    title: "余归巷",
+    date: "2021.7.24"
   },
   {
     file: "余归巷/2021.7.20.jpg",
@@ -120,70 +200,91 @@ const IMAGE_LIST = [
     date: "2021.7.20"
   },
   {
+    file: "余归巷/2021.7.9.jpg",
+    title: "余归巷",
+    date: "2021.7.9"
+  },
+  {
     file: "余归巷/2021.6.10.jpg",
     title: "余归巷",
     date: "2021.6.10"
   },
   {
-    file: "余归巷/2021.4.22.JPG",
+    file: "余归巷/2021.6.1.jpg",
+    title: "余归巷",
+    date: "2021.6.1"
+  },
+  {
+    file: "余归巷/2021.6.1 (2).jpg",
+    title: "余归巷",
+    date: "2021.6.1"
+  },
+  {
+    file: "余归巷/2021.4.22.jpg",
     title: "余归巷",
     date: "2021.4.22"
   },
   {
-    file: "余归巷/2021.3.7.JPG",
+    file: "余归巷/2021.4.15.jpg",
+    title: "余归巷",
+    date: "2021.4.15"
+  },
+  {
+    file: "余归巷/2021.3.7.jpg",
     title: "余归巷",
     date: "2021.3.7"
   },
   {
-    file: "余归巷/2021.1.30.JPG",
+    file: "余归巷/2021.1.30.jpg",
     title: "余归巷",
     date: "2021.1.30"
-  },
-  {
-    file: "余归巷/2021.1.jpg",
-    title: "余归巷",
-    date: "2021.1"
   }
 ];
 
-// ---------- 故事清单 ----------
-// 按时间从最近到最久之前排列。
-// 新增故事时，在这里加一项。
+
+// ===============================
+// 4. 故事清单
+// ===============================
 
 const STORY_LIST = [
   {
     title: "Story 2026.01.29",
     date: "2026.01.29",
     file: "stories/Story20260129.md",
-    summary: "故事片段。点击进入阅读。"
+    summary: ""
   },
   {
     title: "Story 2023.05.28",
     date: "2023.05.28",
     file: "stories/Story20230528.md",
-    summary: "故事片段。点击进入阅读。"
+    summary: ""
   }
 ];
 
-// ---------- 创作笔记清单 ----------
-// 按时间从最近到最久之前排列。
+
+// ===============================
+// 5. 创作笔记清单
+// ===============================
 
 const INSPIRATION_LIST = [
   {
     title: "2026.05.13",
     date: "2026.05.13",
     file: "Inspirations/20260513.md",
-    summary: "角色创作笔记。"
+    summary: ""
   },
   {
     title: "2022.11.06",
     date: "2022.11.06",
     file: "Inspirations/20221106.md",
-    summary: "角色创作笔记。"
+    summary: ""
   }
 ];
 
-// ---------- DOM 元素 ----------
+
+// ===============================
+// 6. DOM 元素
+// ===============================
 
 const navButtons = document.querySelectorAll(".nav-btn");
 
@@ -204,6 +305,9 @@ const introMdContent = document.getElementById("introMdContent");
 const introLikesContent = document.getElementById("introLikesContent");
 const introDislikesContent = document.getElementById("introDislikesContent");
 
+const preferenceLikesContent = document.getElementById("preferenceLikesContent");
+const preferenceDislikesContent = document.getElementById("preferenceDislikesContent");
+
 const galleryGrid = document.getElementById("galleryGrid");
 
 const timelineList = document.getElementById("timelineList");
@@ -222,7 +326,10 @@ const modalImage = document.getElementById("modalImage");
 const modalImageDate = document.getElementById("modalImageDate");
 const closeImageModal = document.getElementById("closeImageModal");
 
-// ---------- 通用工具函数 ----------
+
+// ===============================
+// 7. 通用工具函数
+// ===============================
 
 function hideElement(element) {
   if (element) {
@@ -251,10 +358,21 @@ function setPageHeader(pageKey) {
 
   if (!config) return;
 
-  if (sectionTitle) sectionTitle.textContent = config.title;
-  if (sectionEyebrow) sectionEyebrow.textContent = config.eyebrow;
-  if (sectionStatus) sectionStatus.textContent = config.status;
-  if (currentPageLabel) currentPageLabel.textContent = config.title;
+  if (sectionTitle) {
+    sectionTitle.textContent = config.title;
+  }
+
+  if (sectionEyebrow) {
+    sectionEyebrow.textContent = config.eyebrow;
+  }
+
+  if (sectionStatus) {
+    sectionStatus.textContent = config.status;
+  }
+
+  if (currentPageLabel) {
+    currentPageLabel.textContent = config.title;
+  }
 }
 
 function setActiveNav(pageKey) {
@@ -265,11 +383,6 @@ function setActiveNav(pageKey) {
       button.classList.remove("active");
     }
   });
-}
-
-function getDateFromFileName(filePath) {
-  const fileName = filePath.split("/").pop() || "";
-  return fileName.replace(/\.[^/.]+$/, "");
 }
 
 function escapeHtml(text) {
@@ -286,7 +399,6 @@ function renderMarkdownToHtml(markdownText) {
     return marked.parse(markdownText);
   }
 
-  // 如果 marked 加载失败，至少用普通文本显示
   return `<pre>${escapeHtml(markdownText)}</pre>`;
 }
 
@@ -300,42 +412,44 @@ async function fetchMarkdown(path) {
   return await response.text();
 }
 
-async function loadMarkdownInto(path, targetElement, fallbackText = "内容暂未填写。") {
+async function loadMarkdownInto(path, targetElement) {
   if (!targetElement) return;
 
-  targetElement.innerHTML = `<p class="loading-text">内容读取中...</p>`;
+  targetElement.innerHTML = "";
 
   try {
     const markdown = await fetchMarkdown(path);
     const trimmed = markdown.trim();
 
     if (!trimmed) {
-      targetElement.innerHTML = `<p class="empty-text">${fallbackText}</p>`;
+      targetElement.innerHTML = "";
       return;
     }
 
     targetElement.innerHTML = renderMarkdownToHtml(trimmed);
   } catch (error) {
     console.warn(error);
-    targetElement.innerHTML = `
-      <div class="notice-card">
-        <p>这个文件还没有读取到：</p>
-        <code>${escapeHtml(path)}</code>
-        <p>请检查文件名、大小写和路径是否一致。</p>
-      </div>
-    `;
+    targetElement.innerHTML = "";
   }
+}
+
+function normalizeDate(dateText) {
+  return String(dateText || "").replace(/\./g, "-");
 }
 
 function sortByDateDesc(list) {
   return [...list].sort((a, b) => {
-    const dateA = String(a.date || "");
-    const dateB = String(b.date || "");
+    const dateA = normalizeDate(a.date);
+    const dateB = normalizeDate(b.date);
+
     return dateB.localeCompare(dateA);
   });
 }
 
-// ---------- 页面切换 ----------
+
+// ===============================
+// 8. 页面切换
+// ===============================
 
 function switchPage(pageKey) {
   hideAllViews();
@@ -362,6 +476,7 @@ function switchPage(pageKey) {
 
   if (pageKey === "preference") {
     showElement(preferenceView);
+    loadPreference();
     return;
   }
 
@@ -383,51 +498,45 @@ function switchPage(pageKey) {
   }
 
   showElement(introView);
+  loadIntroduction();
 }
 
-// ---------- 简介页面 ----------
+
+// ===============================
+// 9. 简介页面
+// ===============================
 
 function loadIntroduction() {
-  loadMarkdownInto(
-    INTRO_MD_PATH,
-    introMdContent,
-    "简介暂未填写。"
-  );
-
-  loadMarkdownInto(
-    INTRO_LIKES_MD_PATH,
-    introLikesContent,
-    "喜欢内容暂未填写。"
-  );
-
-  loadMarkdownInto(
-    INTRO_DISLIKES_MD_PATH,
-    introDislikesContent,
-    "讨厌内容暂未填写。"
-  );
+  loadMarkdownInto(INTRO_MD_PATH, introMdContent);
+  loadMarkdownInto(INTRO_LIKES_MD_PATH, introLikesContent);
+  loadMarkdownInto(INTRO_DISLIKES_MD_PATH, introDislikesContent);
 }
 
-// ---------- 图片页面 ----------
+
+// ===============================
+// 10. Preference 页面
+// ===============================
+
+function loadPreference() {
+  loadMarkdownInto(PREFERENCE_LIKES_MD_PATH, preferenceLikesContent);
+  loadMarkdownInto(PREFERENCE_DISLIKES_MD_PATH, preferenceDislikesContent);
+}
+
+
+// ===============================
+// 11. 图片页面
+// ===============================
 
 function renderGallery() {
   if (!galleryGrid) return;
 
   const images = sortByDateDesc(IMAGE_LIST);
 
-  if (!images.length) {
-    galleryGrid.innerHTML = `
-      <div class="notice-card">
-        <p>当前还没有图片。</p>
-      </div>
-    `;
-    return;
-  }
-
   galleryGrid.innerHTML = images
     .map((item) => {
       const file = item.file;
       const title = item.title || "余归巷";
-      const date = item.date || getDateFromFileName(file);
+      const date = item.date;
 
       return `
         <button
@@ -444,7 +553,7 @@ function renderGallery() {
               loading="lazy"
             />
           </div>
-          <span class="image-date">绘制日期：${escapeHtml(date)}</span>
+          <span class="image-date">${escapeHtml(date)}</span>
         </button>
       `;
     })
@@ -468,7 +577,7 @@ function openImageModal(imagePath, date, title) {
 
   modalImage.src = imagePath;
   modalImage.alt = `${title} ${date}`;
-  modalImageDate.textContent = `绘制日期：${date}`;
+  modalImageDate.textContent = date;
 
   imageModal.classList.remove("hidden");
   imageModal.setAttribute("aria-hidden", "false");
@@ -486,12 +595,15 @@ function closeModal() {
   document.body.classList.remove("modal-open");
 }
 
-// ---------- Timeline 页面 ----------
+
+// ===============================
+// 12. Timeline 页面
+// ===============================
 
 async function loadTimeline() {
   if (!timelineList) return;
 
-  timelineList.innerHTML = `<p class="loading-text">人生经历读取中...</p>`;
+  timelineList.innerHTML = "";
 
   try {
     const markdown = await fetchMarkdown(TIMELINE_MD_PATH);
@@ -504,17 +616,14 @@ async function loadTimeline() {
     `;
   } catch (error) {
     console.warn(error);
-    timelineList.innerHTML = `
-      <div class="notice-card">
-        <p>人生经历文件没有读取到：</p>
-        <code>${escapeHtml(TIMELINE_MD_PATH)}</code>
-        <p>请检查路径是否为 Timeline/LifeStory.md。</p>
-      </div>
-    `;
+    timelineList.innerHTML = "";
   }
 }
 
-// ---------- Stories 页面 ----------
+
+// ===============================
+// 13. Stories 页面
+// ===============================
 
 function renderStoryList() {
   if (!storyList || !storyListPanel || !storyReader) return;
@@ -524,17 +633,12 @@ function renderStoryList() {
 
   const stories = sortByDateDesc(STORY_LIST);
 
-  if (!stories.length) {
-    storyList.innerHTML = `
-      <div class="notice-card">
-        <p>当前还没有故事片段。</p>
-      </div>
-    `;
-    return;
-  }
-
   storyList.innerHTML = stories
     .map((story, index) => {
+      const summaryHtml = story.summary
+        ? `<p>${escapeHtml(story.summary)}</p>`
+        : "";
+
       return `
         <button
           class="story-card"
@@ -542,10 +646,12 @@ function renderStoryList() {
           data-index="${index}"
         >
           <div class="story-card-date">${escapeHtml(story.date)}</div>
+
           <div class="story-card-main">
             <h4>${escapeHtml(story.title)}</h4>
-            <p>${escapeHtml(story.summary || "点击进入阅读。")}</p>
+            ${summaryHtml}
           </div>
+
           <span class="story-card-arrow">→</span>
         </button>
       `;
@@ -568,7 +674,7 @@ async function openStory(story) {
   hideElement(storyListPanel);
   showElement(storyReader);
 
-  storyArticleContent.innerHTML = `<p class="loading-text">故事读取中...</p>`;
+  storyArticleContent.innerHTML = "";
 
   try {
     const markdown = await fetchMarkdown(story.file);
@@ -582,13 +688,7 @@ async function openStory(story) {
     `;
   } catch (error) {
     console.warn(error);
-    storyArticleContent.innerHTML = `
-      <div class="notice-card">
-        <p>这篇故事没有读取到：</p>
-        <code>${escapeHtml(story.file)}</code>
-        <p>请检查文件名、大小写和路径是否一致。</p>
-      </div>
-    `;
+    storyArticleContent.innerHTML = "";
   }
 }
 
@@ -597,30 +697,30 @@ function returnToStoryList() {
   hideElement(storyReader);
 }
 
-// ---------- Inspirations 页面 ----------
+
+// ===============================
+// 14. Inspirations 页面
+// ===============================
 
 function renderInspirations() {
   if (!inspirationList) return;
 
   const notes = sortByDateDesc(INSPIRATION_LIST);
 
-  if (!notes.length) {
-    inspirationList.innerHTML = `
-      <div class="notice-card">
-        <p>当前还没有创作笔记。</p>
-      </div>
-    `;
-    return;
-  }
-
   inspirationList.innerHTML = notes
     .map((note, index) => {
+      const summaryHtml = note.summary
+        ? `<p>${escapeHtml(note.summary)}</p>`
+        : "";
+
       return `
         <article class="timeline-item inspiration-item">
           <div class="timeline-date">${escapeHtml(note.date)}</div>
+
           <div class="timeline-card">
             <h4>${escapeHtml(note.title)}</h4>
-            <p>${escapeHtml(note.summary || "创作笔记。")}</p>
+            ${summaryHtml}
+
             <button
               class="read-note-btn"
               type="button"
@@ -628,9 +728,8 @@ function renderInspirations() {
             >
               打开笔记
             </button>
-            <div class="note-content markdown-content hidden" id="note-content-${index}">
-              <p class="loading-text">笔记读取中...</p>
-            </div>
+
+            <div class="note-content markdown-content hidden" id="note-content-${index}"></div>
           </div>
         </article>
       `;
@@ -662,13 +761,16 @@ function renderInspirations() {
         return;
       }
 
-      await loadMarkdownInto(note.file, contentBox, "创作笔记暂未填写。");
+      await loadMarkdownInto(note.file, contentBox);
       contentBox.dataset.loaded = "true";
     });
   });
 }
 
-// ---------- 事件绑定 ----------
+
+// ===============================
+// 15. 事件绑定
+// ===============================
 
 navButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -695,7 +797,10 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// ---------- 初始化 ----------
+
+// ===============================
+// 16. 初始化
+// ===============================
 
 document.addEventListener("DOMContentLoaded", () => {
   switchPage("introduction");
