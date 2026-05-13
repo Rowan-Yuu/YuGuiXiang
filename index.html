@@ -6,7 +6,6 @@
 
   <title>余归巷｜YuGuiXiang</title>
 
-  <!-- 页面样式 -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- Markdown 解析器：用于把 .md 文件转成网页内容 -->
@@ -65,7 +64,6 @@
     <!-- 左侧角色栏 -->
     <aside class="side-panel">
       <div class="portrait-card">
-        <!-- 头像：使用你指定的 2023.11.14 -->
         <img
           id="characterPortrait"
           class="character-portrait"
@@ -109,14 +107,6 @@
           </div>
         </dl>
       </section>
-
-      <section class="reading-tip-card">
-        <h2>阅读说明</h2>
-        <p>
-          简介、喜欢、讨厌读取 Introduction 文件夹中的 Markdown；
-          故事、时间线和创作笔记按时间从近到远排列。
-        </p>
-      </section>
     </aside>
 
     <!-- 右侧主内容 -->
@@ -125,7 +115,7 @@
       <!-- 页面标题 -->
       <div class="content-header">
         <div>
-          <p class="eyebrow" id="sectionEyebrow">Character Archive</p>
+          <p class="eyebrow" id="sectionEyebrow">Character Profile</p>
           <h2 id="sectionTitle">简介 Introduction</h2>
         </div>
 
@@ -134,12 +124,11 @@
         </div>
       </div>
 
-      <!-- 简介页面 -->
+      <!-- 简介 Introduction -->
       <section id="introView" class="intro-view">
-
         <div class="intro-layout">
 
-          <!-- 左侧基础信息：直接写在代码里，不用 md -->
+          <!-- 基本信息：直接写在 HTML 里 -->
           <section class="intro-detail-card">
             <h3>基本信息</h3>
 
@@ -166,141 +155,101 @@
 
               <div>
                 <dt>角色定位</dt>
-                <dd>这里可以直接写角色定位，例如主角、案件相关人物、核心叙事人物等。</dd>
+                <dd></dd>
               </div>
             </dl>
           </section>
 
-          <!-- Intro：读取 Introduction/Intro.md -->
+          <!-- 简介：读取 Introduction/Intro.md -->
           <section class="intro-main-card">
             <h3>简介 Intro</h3>
-            <article id="introMdContent" class="markdown-content">
-              <p class="loading-text">简介读取中...</p>
-            </article>
+            <article id="introMdContent" class="markdown-content"></article>
           </section>
 
-          <!-- Likes：读取 Introduction/Likes.md -->
+          <!-- 喜欢：读取 Introduction/Likes.md -->
           <section class="intro-small-card">
             <h3>喜欢 Likes</h3>
-            <article id="introLikesContent" class="markdown-content">
-              <p class="loading-text">喜欢内容读取中...</p>
-            </article>
+            <article id="introLikesContent" class="markdown-content"></article>
           </section>
 
-          <!-- Dislikes：读取 Introduction/Dislikes.md -->
+          <!-- 讨厌：读取 Introduction/Dislikes.md -->
           <section class="intro-small-card">
             <h3>讨厌 Dislikes</h3>
-            <article id="introDislikesContent" class="markdown-content">
-              <p class="loading-text">讨厌内容读取中...</p>
-            </article>
+            <article id="introDislikesContent" class="markdown-content"></article>
           </section>
 
         </div>
       </section>
 
-      <!-- 图片页面 -->
+      <!-- 图片 Gallery -->
       <section id="galleryView" class="gallery-view hidden">
         <div class="gallery-header">
           <h3>图片 Gallery</h3>
-          <p>点击图片可以打开大图。图片下方显示绘制日期，默认使用文件名作为日期。</p>
         </div>
 
-        <div class="gallery-grid" id="galleryGrid">
-          <!-- script.js 会在这里自动生成图片卡片 -->
-          <!-- 每张图片建议生成结构：
-            <button class="gallery-card" data-full="余归巷/2023.11.14.PNG" data-date="2023.11.14">
-              <img src="余归巷/2023.11.14.PNG" alt="余归巷 2023.11.14">
-              <span class="image-date">2023.11.14</span>
-            </button>
-          -->
-        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
       </section>
 
-      <!-- 人生经历概要 Timeline 页面 -->
+      <!-- 人生经历概要 Timeline -->
       <section id="timelineView" class="timeline-view hidden">
         <div class="timeline-page-header">
           <h3>人生经历概要 Timeline</h3>
-          <p>按时间从最近到最久之前排列。</p>
         </div>
 
-        <div class="timeline-list" id="timelineList">
-          <!-- script.js 生成 timeline 内容 -->
-        </div>
+        <div class="timeline-list" id="timelineList"></div>
       </section>
 
-      <!-- 兴趣爱好 Preference 页面 -->
+      <!-- 兴趣爱好 Preference -->
       <section id="preferenceView" class="preference-view hidden">
-        <div class="static-card">
-          <h3>兴趣爱好 Preference</h3>
+        <div class="preference-grid">
 
-          <p>
-            这里是兴趣爱好页面的固定内容区。你可以直接在 index.html 里修改这一段。
-          </p>
+          <!-- 喜好：读取 Preferences/Likes/Details.md -->
+          <section class="preference-card">
+            <h3>喜好 Likes</h3>
+            <article id="preferenceLikesContent" class="markdown-content"></article>
+          </section>
 
-          <div class="static-two-column">
-            <section>
-              <h4>日常偏好</h4>
-              <p>
-                这里可以写余归巷平时偏好的生活方式、环境、食物、音乐、天气、场所等。
-              </p>
-            </section>
+          <!-- 讨厌：读取 Preferences/Dislikes/Details.md -->
+          <section class="preference-card">
+            <h3>讨厌 Dislikes</h3>
+            <article id="preferenceDislikesContent" class="markdown-content"></article>
+          </section>
 
-            <section>
-              <h4>行为习惯</h4>
-              <p>
-                这里可以写他的习惯动作、思考方式、工作习惯、私人癖好等。
-              </p>
-            </section>
-          </div>
         </div>
       </section>
 
-      <!-- 角色社会关系 Relations 页面 -->
+      <!-- 角色社会关系 Relations -->
       <section id="relationsView" class="relations-view hidden">
         <div class="static-card">
           <h3>角色社会关系 Relations</h3>
 
-          <p>
-            这里是角色社会关系页面的固定内容区。你可以直接在 index.html 里写人物关系。
-          </p>
-
           <div class="relation-list">
             <article class="relation-card">
               <h4>关系人物一</h4>
-              <p>
-                这里写这个人物与余归巷的关系、互动方式、矛盾点或情感连接。
-              </p>
+              <p></p>
             </article>
 
             <article class="relation-card">
               <h4>关系人物二</h4>
-              <p>
-                这里写第二个关系人物。
-              </p>
+              <p></p>
             </article>
 
             <article class="relation-card">
               <h4>关系人物三</h4>
-              <p>
-                这里写第三个关系人物。
-              </p>
+              <p></p>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- 详细故事片段 Stories 页面 -->
+      <!-- 详细故事片段 Stories -->
       <section id="storiesView" class="stories-view hidden">
-
         <div id="storyListPanel" class="story-list-panel">
           <div class="story-list-header">
             <h3>详细故事片段 Stories</h3>
-            <p>按时间从最近到最久之前排列。点击单篇文章进入阅读模式。</p>
           </div>
 
-          <div class="story-list" id="storyList">
-            <!-- script.js 自动生成故事列表 -->
-          </div>
+          <div class="story-list" id="storyList"></div>
         </div>
 
         <article id="storyReader" class="story-reader hidden">
@@ -308,22 +257,17 @@
             ← 返回故事目录
           </button>
 
-          <div id="storyArticleContent" class="markdown-content article-reading">
-            <!-- script.js 显示单篇故事正文 -->
-          </div>
+          <div id="storyArticleContent" class="markdown-content article-reading"></div>
         </article>
       </section>
 
-      <!-- 角色创作笔记 Inspirations 页面 -->
+      <!-- 角色创作笔记 Inspirations -->
       <section id="inspirationView" class="inspiration-view hidden">
         <div class="timeline-page-header">
           <h3>角色创作笔记 Inspirations</h3>
-          <p>按时间从最近到最久之前排列。</p>
         </div>
 
-        <div class="timeline-list" id="inspirationList">
-          <!-- script.js 自动生成创作笔记 -->
-        </div>
+        <div class="timeline-list" id="inspirationList"></div>
       </section>
 
     </section>
@@ -333,16 +277,19 @@
   <div id="imageModal" class="image-modal hidden" aria-hidden="true">
     <div class="image-modal-backdrop" id="imageModalBackdrop"></div>
 
-    <div class="image-modal-content" role="dialog" aria-modal="true" aria-label="图片大图查看">
+    <div
+      class="image-modal-content"
+      role="dialog"
+      aria-modal="true"
+      aria-label="图片大图查看"
+    >
       <button id="closeImageModal" class="modal-close-btn" type="button">
         ×
       </button>
 
       <img id="modalImage" class="modal-image" src="" alt="图片大图" />
 
-      <p id="modalImageDate" class="modal-image-date">
-        绘制日期
-      </p>
+      <p id="modalImageDate" class="modal-image-date"></p>
     </div>
   </div>
 
@@ -351,7 +298,6 @@
     <p>余归巷｜YuGuiXiang Character Archive</p>
   </footer>
 
-  <!-- 页面逻辑 -->
   <script src="script.js"></script>
 </body>
 </html>
