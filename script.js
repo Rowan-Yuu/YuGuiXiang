@@ -65,8 +65,10 @@ const TIMELINE_MD_PATH = "Timeline/LifeStory.md";
 
 
 // ===============================
-// 3. 图片清单
+// 3. 自绘图片清单
 // ===============================
+// 注意：GitHub Pages 区分大小写，所以这里的 JPG / PNG / jpg / jpeg
+// 必须和 GitHub 文件夹里显示的一模一样。
 
 const IMAGE_LIST = [
   {
@@ -241,8 +243,61 @@ const IMAGE_LIST = [
   }
 ];
 
+
 // ===============================
-// 4. 故事清单
+// 4. 友绘图片清单
+// ===============================
+// 作者会自动从文件名中提取：
+// 例如：2021.8.4匿名.png
+// 日期 = 2021.8.4
+// 作者 = 匿名
+//
+// 注意：这里的大小写按 GitHub 截图写。
+// 如果你已经把这些文件名统一改成了小写 jpg/png，
+// 那就把这里对应的 JPG / PNG 改成 jpg / png。
+
+const FRIEND_IMAGE_LIST = [
+  {
+    file: "同人/2024.6.18Sonorode.jpg"
+  },
+  {
+    file: "同人/2021.8.19栖红柿.JPG"
+  },
+  {
+    file: "同人/2021.8.7C.C.jpg"
+  },
+  {
+    file: "同人/2021.8.7C.C (2).jpg"
+  },
+  {
+    file: "同人/2021.8.6匿名.JPG"
+  },
+  {
+    file: "同人/2021.8.4匿名.JPG"
+  },
+  {
+    file: "同人/2021.8.4匿名.PNG"
+  },
+  {
+    file: "同人/2021.7.18鱼头.jpg"
+  },
+  {
+    file: "同人/2021.7.9栖红柿.JPG"
+  },
+  {
+    file: "同人/2021.7.5Sonorode.JPG"
+  },
+  {
+    file: "同人/2021.7.1栖红柿.JPG"
+  },
+  {
+    file: "同人/2021.5.14栖红柿.JPG"
+  }
+];
+
+
+// ===============================
+// 5. 故事清单
 // ===============================
 
 const STORY_LIST = [
@@ -262,7 +317,7 @@ const STORY_LIST = [
 
 
 // ===============================
-// 5. 创作笔记清单
+// 6. 创作笔记清单
 // ===============================
 
 const INSPIRATION_LIST = [
@@ -282,7 +337,7 @@ const INSPIRATION_LIST = [
 
 
 // ===============================
-// 6. DOM 元素
+// 7. DOM 元素
 // ===============================
 
 const navButtons = document.querySelectorAll(".nav-btn");
@@ -308,6 +363,11 @@ const preferenceLikesContent = document.getElementById("preferenceLikesContent")
 const preferenceDislikesContent = document.getElementById("preferenceDislikesContent");
 
 const galleryGrid = document.getElementById("galleryGrid");
+const friendGalleryGrid = document.getElementById("friendGalleryGrid");
+
+const galleryTabs = document.querySelectorAll(".gallery-tab");
+const selfGallerySection = document.getElementById("selfGallerySection");
+const friendGallerySection = document.getElementById("friendGallerySection");
 
 const timelineList = document.getElementById("timelineList");
 
@@ -322,12 +382,13 @@ const inspirationList = document.getElementById("inspirationList");
 const imageModal = document.getElementById("imageModal");
 const imageModalBackdrop = document.getElementById("imageModalBackdrop");
 const modalImage = document.getElementById("modalImage");
+const modalImageAuthor = document.getElementById("modalImageAuthor");
 const modalImageDate = document.getElementById("modalImageDate");
 const closeImageModal = document.getElementById("closeImageModal");
 
 
 // ===============================
-// 7. 通用工具函数
+// 8. 通用工具函数
 // ===============================
 
 function hideElement(element) {
@@ -432,22 +493,69 @@ async function loadMarkdownInto(path, targetElement) {
   }
 }
 
-function normalizeDate(dateText) {
-  return String(dateText || "").replace(/\./g, "-");
+function parseDateToNumber(dateText) {
+  const parts = String(dateText || "")
+    .split(".")
+    .map((part) => Number(part));
+
+  const year = parts[0] || 0;
+  const month = parts[1] || 0;
+  const day = parts[2] || 0;
+
+  return year * 10000 + month * 100 + day;
 }
 
 function sortByDateDesc(list) {
   return [...list].sort((a, b) => {
-    const dateA = normalizeDate(a.date);
-    const dateB = normalizeDate(b.date);
+    const dateA = parseDateToNumber(a.date || getDateFromFileName(a.file).date);
+    const dateB = parseDateToNumber(b.date || getDateFromFileName(b.file).date);
 
-    return dateB.localeCompare(dateA);
+    return dateB - dateA;
   });
+}
+
+function removeFileExtension(fileName) {
+  return String(fileName).replace(/\.[^/.]+$/, "");
+}
+
+function getBaseFileName(filePath) {
+  return String(filePath).split("/").pop() || "";
+}
+
+function getDateFromFileName(filePath) {
+  const fileName = getBaseFileName(filePath);
+  const noExtension = removeFileExtension(fileName);
+
+  const match = noExtension.match(/^(\d{4}\.\d{1,2}(?:\.\d{1,2})?)/);
+
+  if (!match) {
+    return {
+      date: noExtension,
+      rest: ""
+    };
+  }
+
+  const date = match[1];
+  const rest = noExtension.slice(date.length).trim();
+
+  return {
+    date,
+    rest
+  };
+}
+
+function getFriendImageMeta(filePath) {
+  const parsed = getDateFromFileName(filePath);
+
+  return {
+    date: parsed.date,
+    author: parsed.rest || "未知"
+  };
 }
 
 
 // ===============================
-// 8. 页面切换
+// 9. 页面切换
 // ===============================
 
 function switchPage(pageKey) {
@@ -504,7 +612,7 @@ function switchPage(pageKey) {
 
 
 // ===============================
-// 9. 简介页面
+// 10. 简介页面
 // ===============================
 
 function loadIntroduction() {
@@ -515,7 +623,7 @@ function loadIntroduction() {
 
 
 // ===============================
-// 10. Preference 页面
+// 11. Preference 页面
 // ===============================
 
 function loadPreference() {
@@ -525,10 +633,16 @@ function loadPreference() {
 
 
 // ===============================
-// 11. 图片页面
+// 12. 图片页面：自绘 / 友绘
 // ===============================
 
 function renderGallery() {
+  renderSelfGallery();
+  renderFriendGallery();
+  switchGalleryTab("self");
+}
+
+function renderSelfGallery() {
   if (!galleryGrid) return;
 
   const images = sortByDateDesc(IMAGE_LIST);
@@ -537,7 +651,7 @@ function renderGallery() {
     .map((item) => {
       const file = item.file;
       const title = item.title || "余归巷";
-      const date = item.date;
+      const date = item.date || getDateFromFileName(file).date;
 
       return `
         <button
@@ -546,6 +660,8 @@ function renderGallery() {
           data-full="${escapeHtml(file)}"
           data-date="${escapeHtml(date)}"
           data-title="${escapeHtml(title)}"
+          data-author=""
+          data-gallery-type="self"
         >
           <div class="gallery-image-wrap">
             <img
@@ -568,17 +684,118 @@ function renderGallery() {
       const date = card.dataset.date;
       const title = card.dataset.title || "余归巷";
 
-      openImageModal(fullPath, date, title);
+      openImageModal({
+        imagePath: fullPath,
+        date,
+        title,
+        author: "",
+        type: "self"
+      });
     });
   });
 }
 
-function openImageModal(imagePath, date, title) {
+function renderFriendGallery() {
+  if (!friendGalleryGrid) return;
+
+  const images = FRIEND_IMAGE_LIST.map((item) => {
+    const meta = getFriendImageMeta(item.file);
+
+    return {
+      ...item,
+      title: "余归巷",
+      date: item.date || meta.date,
+      author: item.author || meta.author
+    };
+  });
+
+  const sortedImages = sortByDateDesc(images);
+
+  friendGalleryGrid.innerHTML = sortedImages
+    .map((item) => {
+      const file = item.file;
+      const title = item.title || "余归巷";
+      const date = item.date;
+      const author = item.author;
+
+      return `
+        <button
+          class="gallery-card"
+          type="button"
+          data-full="${escapeHtml(file)}"
+          data-date="${escapeHtml(date)}"
+          data-title="${escapeHtml(title)}"
+          data-author="${escapeHtml(author)}"
+          data-gallery-type="friend"
+        >
+          <div class="gallery-image-wrap">
+            <img
+              src="${escapeHtml(file)}"
+              alt="${escapeHtml(title)} ${escapeHtml(date)}"
+              loading="lazy"
+            />
+          </div>
+          <span class="image-date">${escapeHtml(date)}</span>
+        </button>
+      `;
+    })
+    .join("");
+
+  const galleryCards = friendGalleryGrid.querySelectorAll(".gallery-card");
+
+  galleryCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const fullPath = card.dataset.full;
+      const date = card.dataset.date;
+      const title = card.dataset.title || "余归巷";
+      const author = card.dataset.author || "";
+
+      openImageModal({
+        imagePath: fullPath,
+        date,
+        title,
+        author,
+        type: "friend"
+      });
+    });
+  });
+}
+
+function switchGalleryTab(tabName) {
+  const isFriend = tabName === "friend";
+
+  if (selfGallerySection) {
+    selfGallerySection.classList.toggle("hidden", isFriend);
+  }
+
+  if (friendGallerySection) {
+    friendGallerySection.classList.toggle("hidden", !isFriend);
+  }
+
+  galleryTabs.forEach((tab) => {
+    const active = tab.dataset.galleryTab === tabName;
+
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-selected", active ? "true" : "false");
+  });
+}
+
+function openImageModal({ imagePath, date, title, author, type }) {
   if (!imageModal || !modalImage || !modalImageDate) return;
 
   modalImage.src = imagePath;
   modalImage.alt = `${title} ${date}`;
   modalImageDate.textContent = date;
+
+  if (modalImageAuthor) {
+    if (type === "friend" && author) {
+      modalImageAuthor.textContent = `作者：${author}`;
+      modalImageAuthor.classList.remove("hidden");
+    } else {
+      modalImageAuthor.textContent = "";
+      modalImageAuthor.classList.add("hidden");
+    }
+  }
 
   imageModal.classList.remove("hidden");
   imageModal.setAttribute("aria-hidden", "false");
@@ -593,12 +810,22 @@ function closeModal() {
   imageModal.setAttribute("aria-hidden", "true");
 
   modalImage.src = "";
+
+  if (modalImageAuthor) {
+    modalImageAuthor.textContent = "";
+    modalImageAuthor.classList.add("hidden");
+  }
+
+  if (modalImageDate) {
+    modalImageDate.textContent = "";
+  }
+
   document.body.classList.remove("modal-open");
 }
 
 
 // ===============================
-// 12. Timeline 页面
+// 13. Timeline 页面
 // ===============================
 
 async function loadTimeline() {
@@ -623,7 +850,7 @@ async function loadTimeline() {
 
 
 // ===============================
-// 13. Stories 页面
+// 14. Stories 页面
 // ===============================
 
 function renderStoryList() {
@@ -700,7 +927,7 @@ function returnToStoryList() {
 
 
 // ===============================
-// 14. Inspirations 页面
+// 15. Inspirations 页面
 // ===============================
 
 function renderInspirations() {
@@ -770,13 +997,20 @@ function renderInspirations() {
 
 
 // ===============================
-// 15. 事件绑定
+// 16. 事件绑定
 // ===============================
 
 navButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const pageKey = button.dataset.page;
     switchPage(pageKey);
+  });
+});
+
+galleryTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const tabName = tab.dataset.galleryTab;
+    switchGalleryTab(tabName);
   });
 });
 
@@ -800,7 +1034,7 @@ document.addEventListener("keydown", (event) => {
 
 
 // ===============================
-// 16. 初始化
+// 17. 初始化
 // ===============================
 
 document.addEventListener("DOMContentLoaded", () => {
