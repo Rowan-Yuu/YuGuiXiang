@@ -1,1 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>余归巷｜YuGuiXiang</title>
+
+  <!-- 页面样式 -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Markdown 解析器：用于把 .md 文件转成网页内容 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+  <!-- 顶部导航栏 -->
+  <header class="site-header">
+    <div class="brand-area">
+      <div class="brand-cn">余归巷</div>
+      <div class="brand-en">YuGuiXiang</div>
+    </div>
+
+    <nav class="main-nav" aria-label="主导航">
+      <button class="nav-btn active" data-page="introduction">
+        简介
+        <span>Introduction</span>
+      </button>
+
+      <button class="nav-btn" data-page="gallery">
+        图片
+        <span>Gallery</span>
+      </button>
+
+      <button class="nav-btn" data-page="timeline">
+        人生经历概要
+        <span>Timeline</span>
+      </button>
+
+      <button class="nav-btn" data-page="preference">
+        兴趣爱好
+        <span>Preference</span>
+      </button>
+
+      <button class="nav-btn" data-page="relations">
+        角色社会关系
+        <span>Relations</span>
+      </button>
+
+      <button class="nav-btn" data-page="stories">
+        详细故事片段
+        <span>Stories</span>
+      </button>
+
+      <button class="nav-btn" data-page="inspirations">
+        角色创作笔记
+        <span>Inspirations</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+
+    <!-- 左侧角色信息栏 -->
+    <aside class="side-panel">
+      <div class="portrait-card">
+        <!-- 头像：使用你指定的 2023.11.14.PNG -->
+        <img
+          id="characterPortrait"
+          class="character-portrait"
+          src="余归巷/2023.11.14.PNG"
+          alt="余归巷头像"
+        />
+
+        <div class="portrait-info">
+          <h1>余归巷</h1>
+          <p>YuGuiXiang</p>
+        </div>
+      </div>
+
+      <section class="quick-info-card">
+        <h2>角色档案</h2>
+
+        <dl class="quick-info-list">
+          <div>
+            <dt>姓名</dt>
+            <dd>余归巷</dd>
+          </div>
+
+          <div>
+            <dt>性别</dt>
+            <dd>男</dd>
+          </div>
+
+          <div>
+            <dt>身高</dt>
+            <dd>177cm</dd>
+          </div>
+
+          <div>
+            <dt>职业</dt>
+            <dd>刑警</dd>
+          </div>
+
+          <div>
+            <dt>当前页面</dt>
+            <dd id="currentPageLabel">简介 Introduction</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="reading-tip-card">
+        <h2>页面说明</h2>
+        <p>
+          简介正文、喜欢、讨厌由 Markdown 文件读取；
+          角色基础信息直接写在网页结构里。
+        </p>
+      </section>
+    </aside>
+
+    <!-- 右侧主内容区 -->
+    <section class="content-panel">
+
+      <!-- 页面标题区 -->
+      <div class="content-header">
+        <div>
+          <p class="eyebrow" id="sectionEyebrow">Character Archive</p>
+          <h2 id="sectionTitle">简介 Introduction</h2>
+        </div>
+
+        <div class="section-status" id="sectionStatus">
+          Profile
+        </div>
+      </div>
+
+      <!-- 简介页面 -->
+      <section id="introView" class="intro-view">
+        <div class="intro-layout">
+
+          <!-- 左上：基础信息，直接写在代码里 -->
+          <div class="intro-profile-card">
+            <h3>基础信息</h3>
+
+            <dl class="profile-detail-list">
+              <div>
+                <dt>姓名</dt>
+                <dd>余归巷</dd>
+              </div>
+
+              <div>
+                <dt>性别</dt>
+                <dd>男</dd>
+              </div>
+
+              <div>
+                <dt>身高</dt>
+                <dd>177cm</dd>
+              </div>
+
+              <div>
+                <dt>职业</dt>
+                <dd>刑警</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- 右上：喜欢 / 讨厌，读取 Introduction/Likes.md 和 Introduction/Dislikes.md -->
+          <div class="intro-preference-card">
+            <div class="intro-preference-block">
+              <h3>喜欢</h3>
+              <article id="introLikesContent" class="markdown-content compact-markdown">
+                <p class="loading-text">喜欢内容读取中...</p>
+              </article>
+            </div>
+
+            <div class="intro-preference-block">
+              <h3>讨厌</h3>
+              <article id="introDislikesContent" class="markdown-content compact-markdown">
+                <p class="loading-text">讨厌内容读取中...</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- 下方：简介正文，读取 Introduction/Intro.md -->
+          <div class="intro-main-card wide">
+            <h3>简介 Introduction</h3>
+
+            <article id="introMainContent" class="markdown-content">
+              <p class="loading-text">简介内容读取中...</p>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 通用 Markdown 内容区：给普通页面预留 -->
+      <article id="markdownContent" class="markdown-content hidden">
+        <p class="loading-text">内容读取中...</p>
+      </article>
+
+      <!-- 图片页面 -->
+      <section id="galleryView" class="gallery-view hidden">
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- script.js 自动生成图片卡片 -->
+        </div>
+      </section>
+
+      <!-- 人生经历概要 Timeline 页面 -->
+      <section id="timelineView" class="timeline-view hidden">
+        <div class="timeline-list" id="timelineList">
+          <!-- script.js 自动生成时间线内容，按时间从近到远排列 -->
+        </div>
+      </section>
+
+      <!-- 兴趣爱好 Preference 页面 -->
+      <section id="preferenceView" class="preference-view hidden">
+        <div class="preference-grid">
+
+          <div class="preference-card">
+            <h3>Likes</h3>
+            <article id="likesContent" class="markdown-content">
+              <p class="loading-text">喜欢内容读取中...</p>
+            </article>
+          </div>
+
+          <div class="preference-card">
+            <h3>Dislikes</h3>
+            <article id="dislikesContent" class="markdown-content">
+              <p class="loading-text">讨厌内容读取中...</p>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 角色社会关系 Relations 页面 -->
+      <section id="relationsView" class="relations-view hidden">
+        <article id="relationsContent" class="markdown-content">
+          <p class="loading-text">社会关系内容读取中...</p>
+        </article>
+      </section>
+
+      <!-- 详细故事片段 Stories 页面 -->
+      <section id="storiesView" class="stories-view hidden">
+
+        <div id="storyListPanel" class="story-list-panel">
+          <div class="story-list-header">
+            <h3>故事片段目录</h3>
+            <p>按时间从最近到最久之前排列。</p>
+          </div>
+
+          <div class="story-list" id="storyList">
+            <!-- script.js 自动生成故事列表 -->
+          </div>
+        </div>
+
+        <article id="storyReader" class="story-reader hidden">
+          <button id="backToStoryList" class="back-btn" type="button">
+            ← 返回故事目录
+          </button>
+
+          <div id="storyArticleContent" class="markdown-content article-reading">
+            <!-- script.js 显示单篇故事正文 -->
+          </div>
+        </article>
+      </section>
+
+      <!-- 角色创作笔记 Inspirations 页面 -->
+      <section id="inspirationView" class="inspiration-view hidden">
+        <div class="timeline-list" id="inspirationList">
+          <!-- script.js 自动生成创作笔记列表，按时间从近到远排列 -->
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>余归巷｜YuGuiXiang Character Archive</p>
+  </footer>
+
+  <!-- 页面交互逻辑 -->
+  <script src="script.js"></script>
+</body>
+</html>
