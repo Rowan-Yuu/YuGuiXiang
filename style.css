@@ -946,3 +946,23 @@ body.modal-open {
     padding: 14px;
   }
 }
+@media (max-width: 820px) {
+  .page-shell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content-panel {
+    order: 1;
+  }
+
+  .character-panel {
+    order: 2;
+  }
+
+  .side-panel {
+    border-right: none;
+    border-top: 2px solid var(--border-dark);
+    border-bottom: none;
+  }
+}
