@@ -3,8 +3,6 @@
    style.css
    =============================== */
 
-/* ---------- 全局基础 ---------- */
-
 :root {
   --nav-blue: #243157;
   --nav-blue-light: #3b4771;
@@ -22,6 +20,8 @@
   --radius-md: 12px;
   --radius-sm: 8px;
 }
+
+/* ---------- 全局 ---------- */
 
 * {
   box-sizing: border-box;
@@ -167,7 +167,7 @@ body.modal-open {
 .page-shell {
   width: min(1320px, calc(100% - 48px));
   min-height: 760px;
-  margin: 0 auto 0;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 310px 1fr;
   background: var(--paper-bg);
@@ -226,8 +226,7 @@ body.modal-open {
   font-family: Georgia, "Times New Roman", serif;
 }
 
-.quick-info-card,
-.reading-tip-card {
+.quick-info-card {
   margin-top: 18px;
   padding: 18px;
   border: 2px solid var(--border-dark);
@@ -236,8 +235,7 @@ body.modal-open {
   box-shadow: var(--shadow-soft);
 }
 
-.quick-info-card h2,
-.reading-tip-card h2 {
+.quick-info-card h2 {
   margin: 0 0 14px;
   font-size: 20px;
   letter-spacing: 0.08em;
@@ -274,13 +272,6 @@ body.modal-open {
   color: var(--ink-black);
   font-size: 15px;
   line-height: 1.6;
-}
-
-.reading-tip-card p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.8;
-  color: var(--soft-black);
 }
 
 /* ---------- 内容标题 ---------- */
@@ -453,53 +444,12 @@ body.modal-open {
   border: 1.5px solid var(--border-dark);
 }
 
-.loading-text,
-.empty-text {
-  margin: 0;
-  color: var(--muted-text);
-  font-style: italic;
-}
-
-.notice-card {
-  padding: 18px;
-  border: 1.5px dashed var(--border-soft);
-  border-radius: var(--radius-md);
-  background: #fff8e6;
-  color: var(--soft-black);
-}
-
-.notice-card p {
-  margin: 0 0 8px;
-}
-
-.notice-card p:last-child {
-  margin-bottom: 0;
-}
-
-.notice-card code {
-  display: inline-block;
-  margin: 4px 0 10px;
-  padding: 5px 8px;
-  border-radius: 6px;
-  background: #fff;
-  border: 1px solid var(--border-soft);
-}
-
 /* ---------- 图片页面 ---------- */
 
 .gallery-header,
 .timeline-page-header,
 .story-list-header {
   margin-bottom: 18px;
-}
-
-.gallery-header p,
-.timeline-page-header p,
-.story-list-header p {
-  margin: -8px 0 0;
-  color: var(--muted-text);
-  font-size: 14px;
-  line-height: 1.7;
 }
 
 .gallery-grid {
@@ -683,29 +633,8 @@ body.modal-open {
   gap: 18px;
 }
 
-.static-two-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-top: 18px;
-}
-
-.static-two-column section {
-  padding: 16px;
-  border: 1.5px solid var(--border-soft);
-  border-radius: var(--radius-md);
-  background: #fffaf0;
-}
-
-.static-two-column h4 {
-  margin: 0 0 10px;
-  font-size: 18px;
-}
-
-.static-two-column p,
-.static-card p {
-  line-height: 1.8;
-  color: var(--soft-black);
+.preference-card {
+  min-height: 260px;
 }
 
 /* ---------- Relations 页面 ---------- */
@@ -904,8 +833,7 @@ body.modal-open {
   }
 
   .intro-layout,
-  .preference-grid,
-  .static-two-column {
+  .preference-grid {
     grid-template-columns: 1fr;
   }
 }
