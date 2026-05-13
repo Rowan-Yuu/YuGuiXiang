@@ -58,7 +58,6 @@
 
   <main class="page-shell">
 
-    <!-- 角色侧栏：电脑端在左侧，手机端会通过 CSS 排到正文下方 -->
     <aside class="side-panel character-panel">
       <div class="portrait-card">
         <img
@@ -106,7 +105,6 @@
       </section>
     </aside>
 
-    <!-- 主内容：电脑端在右侧，手机端会排在角色侧栏上方 -->
     <section class="content-panel main-content-panel">
 
       <div class="content-header">
@@ -177,7 +175,51 @@
           <h3>图片 Gallery</h3>
         </div>
 
-        <div class="gallery-grid" id="galleryGrid"></div>
+        <div class="gallery-tabs" role="tablist" aria-label="图片分类">
+          <button
+            id="selfGalleryTab"
+            class="gallery-tab active"
+            type="button"
+            data-gallery-tab="self"
+            role="tab"
+            aria-selected="true"
+            aria-controls="selfGallerySection"
+          >
+            自绘
+          </button>
+
+          <button
+            id="friendGalleryTab"
+            class="gallery-tab"
+            type="button"
+            data-gallery-tab="friend"
+            role="tab"
+            aria-selected="false"
+            aria-controls="friendGallerySection"
+          >
+            友绘
+          </button>
+        </div>
+
+        <section
+          id="selfGallerySection"
+          class="gallery-section gallery-section-self"
+          data-gallery-section="self"
+          role="tabpanel"
+          aria-labelledby="selfGalleryTab"
+        >
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </section>
+
+        <section
+          id="friendGallerySection"
+          class="gallery-section gallery-section-friend hidden"
+          data-gallery-section="friend"
+          role="tabpanel"
+          aria-labelledby="friendGalleryTab"
+        >
+          <div class="gallery-grid" id="friendGalleryGrid"></div>
+        </section>
       </section>
 
       <section id="timelineView" class="timeline-view hidden">
@@ -270,6 +312,8 @@
       </button>
 
       <img id="modalImage" class="modal-image" src="" alt="图片大图" />
+
+      <p id="modalImageAuthor" class="modal-image-author hidden"></p>
 
       <p id="modalImageDate" class="modal-image-date"></p>
     </div>
