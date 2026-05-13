@@ -258,7 +258,7 @@ const IMAGE_LIST = [
 
 const FRIEND_IMAGE_LIST = [
   {
-    file: "同人/2024.6.18Sonorode.jpg"
+    file: "同人/2024.9.6Sonorode.jpg"
   },
   {
     file: "同人/2024.6.18Sonorode.jpg"
