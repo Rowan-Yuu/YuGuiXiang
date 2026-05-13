@@ -455,6 +455,8 @@ function switchPage(pageKey) {
   setPageHeader(pageKey);
   setActiveNav(pageKey);
 
+  document.body.classList.toggle("introduction-page", pageKey === "introduction");
+
   if (pageKey === "introduction") {
     showElement(introView);
     loadIntroduction();
