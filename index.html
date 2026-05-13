@@ -8,12 +8,10 @@
 
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Markdown 解析器：用于把 .md 文件转成网页内容 -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
-  <!-- 顶部导航栏 -->
   <header class="site-header">
     <div class="brand-area">
       <div class="brand-cn">余归巷</div>
@@ -58,16 +56,14 @@
     </nav>
   </header>
 
-  <!-- 页面主体 -->
   <main class="page-shell">
 
-    <!-- 左侧角色栏 -->
     <aside class="side-panel">
       <div class="portrait-card">
         <img
           id="characterPortrait"
           class="character-portrait"
-          src="余归巷/2023.11.14.PNG"
+          src="余归巷/2023.11.14.png"
           alt="余归巷头像"
         />
 
@@ -109,10 +105,8 @@
       </section>
     </aside>
 
-    <!-- 右侧主内容 -->
     <section class="content-panel">
 
-      <!-- 页面标题 -->
       <div class="content-header">
         <div>
           <p class="eyebrow" id="sectionEyebrow">Character Profile</p>
@@ -124,11 +118,9 @@
         </div>
       </div>
 
-      <!-- 简介 Introduction -->
       <section id="introView" class="intro-view">
         <div class="intro-layout">
 
-          <!-- 基本信息：直接写在 HTML 里 -->
           <section class="intro-detail-card">
             <h3>基本信息</h3>
 
@@ -160,19 +152,16 @@
             </dl>
           </section>
 
-          <!-- 简介：读取 Introduction/Intro.md -->
           <section class="intro-main-card">
             <h3>简介 Intro</h3>
             <article id="introMdContent" class="markdown-content"></article>
           </section>
 
-          <!-- 喜欢：读取 Introduction/Likes.md -->
           <section class="intro-small-card">
             <h3>喜欢 Likes</h3>
             <article id="introLikesContent" class="markdown-content"></article>
           </section>
 
-          <!-- 讨厌：读取 Introduction/Dislikes.md -->
           <section class="intro-small-card">
             <h3>讨厌 Dislikes</h3>
             <article id="introDislikesContent" class="markdown-content"></article>
@@ -181,7 +170,6 @@
         </div>
       </section>
 
-      <!-- 图片 Gallery -->
       <section id="galleryView" class="gallery-view hidden">
         <div class="gallery-header">
           <h3>图片 Gallery</h3>
@@ -190,7 +178,6 @@
         <div class="gallery-grid" id="galleryGrid"></div>
       </section>
 
-      <!-- 人生经历概要 Timeline -->
       <section id="timelineView" class="timeline-view hidden">
         <div class="timeline-page-header">
           <h3>人生经历概要 Timeline</h3>
@@ -199,17 +186,14 @@
         <div class="timeline-list" id="timelineList"></div>
       </section>
 
-      <!-- 兴趣爱好 Preference -->
       <section id="preferenceView" class="preference-view hidden">
         <div class="preference-grid">
 
-          <!-- 喜好：读取 Preferences/Likes/Details.md -->
           <section class="preference-card">
             <h3>喜好 Likes</h3>
             <article id="preferenceLikesContent" class="markdown-content"></article>
           </section>
 
-          <!-- 讨厌：读取 Preferences/Dislikes/Details.md -->
           <section class="preference-card">
             <h3>讨厌 Dislikes</h3>
             <article id="preferenceDislikesContent" class="markdown-content"></article>
@@ -218,7 +202,6 @@
         </div>
       </section>
 
-      <!-- 角色社会关系 Relations -->
       <section id="relationsView" class="relations-view hidden">
         <div class="static-card">
           <h3>角色社会关系 Relations</h3>
@@ -242,7 +225,6 @@
         </div>
       </section>
 
-      <!-- 详细故事片段 Stories -->
       <section id="storiesView" class="stories-view hidden">
         <div id="storyListPanel" class="story-list-panel">
           <div class="story-list-header">
@@ -261,7 +243,6 @@
         </article>
       </section>
 
-      <!-- 角色创作笔记 Inspirations -->
       <section id="inspirationView" class="inspiration-view hidden">
         <div class="timeline-page-header">
           <h3>角色创作笔记 Inspirations</h3>
@@ -273,7 +254,6 @@
     </section>
   </main>
 
-  <!-- 图片大图查看弹窗 -->
   <div id="imageModal" class="image-modal hidden" aria-hidden="true">
     <div class="image-modal-backdrop" id="imageModalBackdrop"></div>
 
@@ -293,7 +273,6 @@
     </div>
   </div>
 
-  <!-- 底部 -->
   <footer class="site-footer">
     <p>余归巷｜YuGuiXiang Character Archive</p>
   </footer>
