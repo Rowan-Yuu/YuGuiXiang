@@ -261,6 +261,9 @@ const FRIEND_IMAGE_LIST = [
     file: "同人/2024.6.18Sonorode.jpg"
   },
   {
+    file: "同人/2024.6.18Sonorode.jpg"
+  },
+  {
     file: "同人/2021.8.19栖红柿.JPG"
   },
   {
